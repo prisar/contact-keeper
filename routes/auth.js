@@ -8,6 +8,15 @@ const auth = require("../middlewares/auth");
 
 // @route   GET  api/auth
 // @desc    Get loggedin user
-router.get('/', auth, (req, res) => {
-    res.send('get loggedin user');
+router.get('/', auth, async (req, res) => {
+
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.send(user);
+    } catch(err) {
+        console.log(err.message);
+        res.status(500).send('Server Error');
+    }
 });
+
+module.exports = router;

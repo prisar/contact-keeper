@@ -16,7 +16,7 @@ app.get('/', (req, res) => res.json({ msg: 'Welcome to contact keeper api' }));
 
 // routes
 app.use('/api/users', require('./routes/user'));
-// app.use('/api/auth', require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth'));
 // app.use('/api/contacts', require('./routes/contacts'));
 
 const PORT = process.env.PORT || 5000;
